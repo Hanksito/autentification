@@ -11,9 +11,9 @@ export const Single = (props) => {
 
   return (
     <div className="container ">
-      <div className="row">
+      <div className="row m-5">
         <ul>
-          <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 Services-tab  item">
+          <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 Services-tab item ">
             <div className="folded-corner service_tab_1">
               <div className="text">
                 <i className="fa fa-image fa-5x fa-icon-image"></i>
@@ -142,6 +142,13 @@ export const Single = (props) => {
             </div>
           </div>
         </ul>
+        <div className="text-center">
+          <Link to="/">
+            <button className="btn btn-danger px-5" type="submit">
+              enter
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

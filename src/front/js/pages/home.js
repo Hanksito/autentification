@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Home = () => {
@@ -29,7 +29,7 @@ export const Home = () => {
                 type="password"
                 name="password"
                 className="form-control form-group"
-                placeholder="password"
+                placeholder="contraseña"
                 required
               />
               <Link to="/single">
@@ -37,16 +37,16 @@ export const Home = () => {
                   className="btn btn-lg btn-primary btn-block btn-signin"
                   type="submit"
                 >
-                  enter
+                  Enter
                 </button>
               </Link>
               <Link to="/demo">
                 <button
                   type="Register"
                   name="Register"
-                  className="btn btn-lg btn-warning btn-block btn-signin my-2"
+                  className="btn btn-lg btn-warning btn-block btn-signin my-4"
                 >
-                  Register
+                  Registrarse
                 </button>
               </Link>
             </form>
