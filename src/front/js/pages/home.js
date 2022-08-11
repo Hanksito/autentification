@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+  const [userName, setuserName] = useState("");
+  const [password, setpassword] = useState("");
 
   return (
     <div className="container h-80">
@@ -19,6 +21,8 @@ export const Home = () => {
             <p id="profile-name" className="profile-name-card"></p>
             <form className="form-signin">
               <input
+                value={userName}
+                onChange={(e) => setuserName(e.target.value)}
                 type="userName"
                 name="UserName"
                 className="form-control form-group"
@@ -26,13 +30,20 @@ export const Home = () => {
                 required
               />
               <input
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
                 type="password"
                 name="password"
                 className="form-control form-group"
                 placeholder="contraseña"
                 required
               />
-              <Link to="/single">
+              <Link
+                onClick={() => {
+                  actions.getLogin(userName, password);
+                }}
+                to="/single"
+              >
                 <button
                   className="btn btn-lg btn-primary btn-block btn-signin"
                   type="submit"
