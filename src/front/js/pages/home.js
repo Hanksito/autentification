@@ -1,12 +1,16 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
+
   const [userName, setuserName] = useState("");
   const [password, setpassword] = useState("");
+
+  const navigate = useNavigate();
 
   return (
     <div className="container h-80">
@@ -38,19 +42,24 @@ export const Home = () => {
                 placeholder="contraseña"
                 required
               />
-              <Link
+              <button
+                className="btn btn-lg btn-primary btn-block btn-signin"
+                type="submit"
                 onClick={() => {
                   actions.getLogin(userName, password);
+                  console.log(store.token);
+                  if (
+                    store.token &&
+                    store.token != "" &&
+                    store.token != undefined
+                  ) {
+                    navigate("/single");
+                  }
                 }}
-                to="/single"
               >
-                <button
-                  className="btn btn-lg btn-primary btn-block btn-signin"
-                  type="submit"
-                >
-                  Enter
-                </button>
-              </Link>
+                Enter
+              </button>
+
               <Link to="/demo">
                 <button
                   type="Register"
