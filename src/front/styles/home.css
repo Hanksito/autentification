@@ -3,7 +3,17 @@ html {
   background-image: url("https://i.imgur.com/xhiRfL6.jpg");
   height: 100%;
 }
-
+#caja {
+  margin-top: 20%;
+}
+h1 {
+  font-size: 55px;
+}
+#inputtext {
+  width: 50%;
+  height: 25px;
+  margin: auto;
+}
 #profile-img {
   height: 180px;
 }

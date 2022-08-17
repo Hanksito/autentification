@@ -16,18 +16,19 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
       getLogin: () => {
+        const store = getStore();
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: getStore.username,
-            password: getStore.password,
+            username: store.username,
+            password: store.password,
           }),
         };
         fetch(
-          "https://3001-hanksito-autentificatio-i5r18ezl44q.ws-eu61.gitpod.io/api/token",
+          "https://3001-hanksito-autentificatio-sitc2sfap24.ws-eu61.gitpod.io/api/token",
           opts
         )
           .then((resp) => {
@@ -36,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return aux;
           })
           .then((data) => {
-            sessionStorage.getItem("token", data.access_token);
+            console.log(data);
             setStore({ token: data.access_token });
           });
       },
