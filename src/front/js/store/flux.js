@@ -1,41 +1,44 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      token: null,
+      username: "",
+      password: "",
+      token: "",
     },
     actions: {
       // Use getActions to call a function within a fuction
-      reloadtoken: () => {
-        const token = sessionStorage.getItem("token");
-        setStore({ token: token });
+      getUsername: (name) => {
+        setStore({ username: name });
       },
-      getLogin: async (user, pass) => {
+
+      getPassword: (pass) => {
+        setStore({ password: pass });
+      },
+
+      getLogin: () => {
         const opts = {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: user,
-            password: pass,
+            username: getStore.username,
+            password: getStore.password,
           }),
         };
-        try {
-          const resp = await fetch(
-            "https://3001-hanksito-autentificatio-lsemqdrbw7c.ws-eu59.gitpod.io/api/token",
-            opts
-          );
-          if (resp.status !== 200) {
-            alert("Algo salio mal");
-            return false;
-          }
-          const data = await resp.json();
-          sessionStorage.setItem("token", data.access_token);
-          setStore({ token: data.access_token });
-          return true;
-        } catch (error) {
-          console.error("Algo salio mal");
-        }
+        fetch(
+          "https://3001-hanksito-autentificatio-i5r18ezl44q.ws-eu61.gitpod.io/api/token",
+          opts
+        )
+          .then((resp) => {
+            let aux = resp.json();
+
+            return aux;
+          })
+          .then((data) => {
+            sessionStorage.getItem("token", data.access_token);
+            setStore({ token: data.access_token });
+          });
       },
     },
   };
