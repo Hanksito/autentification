@@ -10,12 +10,13 @@ h1 {
   font-size: 55px;
 }
 #inputtext {
-  width: 50%;
+  width: 53%;
   height: 25px;
   margin: auto;
 }
 #profile-img {
-  height: 180px;
+  height: 10%;
+  width: 40%;
 }
 .h-80 {
   height: 80% !important;

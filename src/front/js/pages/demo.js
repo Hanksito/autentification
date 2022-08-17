@@ -18,12 +18,15 @@ export const Demo = () => {
                     Create an account
                   </h2>
 
-                  <form>
-                    <div className="form-outline mb-4">
+                  <div>
+                    <div className=" mb-4">
                       <input
                         type="text"
                         id="form3Example1cg"
                         className="form-control form-control-lg"
+                        onChange={(e) => {
+                          actions.getUsername(e.target.value);
+                        }}
                       />
                       <label className="form-label" for="form3Example1cg">
                         Username
@@ -32,6 +35,9 @@ export const Demo = () => {
 
                     <div className="form-outline mb-4">
                       <input
+                        onChange={(e) => {
+                          actions.getEmail(e.target.value);
+                        }}
                         type="email"
                         id="form3Example3cg"
                         className="form-control form-control-lg"
@@ -43,6 +49,9 @@ export const Demo = () => {
 
                     <div className="form-outline mb-4">
                       <input
+                        onChange={(e) => {
+                          actions.getPassword(e.target.value);
+                        }}
                         type="password"
                         id="form3Example4cg"
                         className="form-control form-control-lg"
@@ -56,6 +65,9 @@ export const Demo = () => {
                       <button
                         type="button"
                         className="btn btn-lg btn-warning btn-block btn-signin"
+                        onClick={() => {
+                          actions.register();
+                        }}
                       >
                         Registrarse
                       </button>
@@ -68,7 +80,7 @@ export const Demo = () => {
                         Volver al login
                       </button>
                     </Link>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>

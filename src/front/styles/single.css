@@ -10,6 +10,11 @@ h3 {
   text-align: center;
 }
 
+#fail {
+  color: white;
+  text-align: center;
+  margin-top: 25%;
+}
 .folded-corner:hover .text {
   visibility: visible;
   color: #000000;
