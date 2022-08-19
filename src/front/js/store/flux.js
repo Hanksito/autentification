@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       password: "",
       token: "",
       autentificacion: false,
+      url: process.env.BACKEND_URL,
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -22,10 +23,11 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       storereload: () => {
         let token = sessionStorage.getItem("token");
-        if (token !== "") {
+        if (token !== "" && token !== null && token !== undefined) {
           setStore({ token: token });
           setStore({ autentificacion: true });
-          sessionStorage.setItem("token", "");
+        } else {
+          setStore({ autentificacion: false });
         }
       },
       register: () => {
@@ -41,10 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             email: store.email,
           }),
         };
-        fetch(
-          "https://3001-hanksito-autentificatio-sitc2sfap24.ws-eu61.gitpod.io/api/register",
-          opts
-        ).then((resp) => {
+        fetch(process.env.BACKEND_URL + "/api/register", opts).then((resp) => {
           if (resp.status == 200) {
             setStore({ username: "" });
             setStore({ password: "" });
@@ -56,6 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       logout: () => {
         setStore({ token: "" });
         setStore({ autentificacion: false });
+        sessionStorage.removeItem("token");
       },
       getLogin: () => {
         const store = getStore();
@@ -69,10 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             password: store.password,
           }),
         };
-        fetch(
-          "https://3001-hanksito-autentificatio-sitc2sfap24.ws-eu61.gitpod.io/api/token",
-          opts
-        )
+        fetch(store.url + "/api/token", opts)
           .then((resp) => {
             if (resp.status == 200) {
               let aux = resp.json();
