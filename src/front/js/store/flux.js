@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       password: "",
       token: "",
       autentificacion: false,
-      url: process.env.BACKEND_URL,
+      url: "https://hanksito-autentificatio-d964sku2gyp.ws-eu62.gitpod.io/",
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -43,7 +43,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             email: store.email,
           }),
         };
-        fetch(process.env.BACKEND_URL + "/api/register", opts).then((resp) => {
+        fetch(process.env.BACKEND_URL + "api/register", opts).then((resp) => {
           if (resp.status == 200) {
             setStore({ username: "" });
             setStore({ password: "" });
@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             password: store.password,
           }),
         };
-        fetch(store.url + "/api/token", opts)
+        fetch(process.env.BACKEND_URL + "api/token", opts)
           .then((resp) => {
             if (resp.status == 200) {
               let aux = resp.json();
