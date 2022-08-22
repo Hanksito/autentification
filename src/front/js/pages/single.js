@@ -5,10 +5,12 @@ import { Context } from "../store/appContext";
 
 import "../../styles/single.css";
 
-export const Single = (props) => {
+export const Single = () => {
   const { store, actions } = useContext(Context);
-
-  if (store.autentificacion) {
+  useEffect(() => {
+    actions.getAutentification();
+  }, []);
+  if (store.autentificacion == true) {
     return (
       <div className="container ">
         <div className="row m-5">
@@ -145,7 +147,7 @@ export const Single = (props) => {
           <div className="text-center">
             <Link to="/">
               <button className="btn btn-danger px-5" type="submit">
-                enter
+                Go Login
               </button>
             </Link>
           </div>
@@ -158,7 +160,7 @@ export const Single = (props) => {
         <h1 id="fail">NO TIENES DERECHO A VER LA MAGIA</h1>
         <Link to="/">
           <button onSubmit="button" className="btn btn-lg btn-danger">
-            Atras
+            Go Login
           </button>
         </Link>
       </div>

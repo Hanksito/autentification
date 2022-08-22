@@ -35,3 +35,9 @@ def create_token():
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token)
 
+@api.route("/privado", methods = ["GET"])
+@jwt_required()
+def privado():
+    identity = get_jwt_identity()
+    user = User.query.filter_by(email = identity).one_or_none()
+    return jsonify({"msg":True}),200

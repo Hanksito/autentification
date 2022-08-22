@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       password: "",
       token: "",
       autentificacion: false,
-      url: "https://hanksito-autentificatio-d964sku2gyp.ws-eu62.gitpod.io/",
+      url: "https://3001-hanksito-autentificatio-1w44016d85t.ws-eu62.gitpod.io/",
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -23,12 +23,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       storereload: () => {
         let token = sessionStorage.getItem("token");
-        if (token !== "" && token !== null && token !== undefined) {
-          setStore({ token: token });
-          setStore({ autentificacion: true });
-        } else {
-          setStore({ autentificacion: false });
-        }
+        setStore({ token: token });
       },
       register: () => {
         const store = getStore();
@@ -43,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             email: store.email,
           }),
         };
-        fetch(process.env.BACKEND_URL + "api/register", opts).then((resp) => {
+        fetch(store.url + "api/register", opts).then((resp) => {
           if (resp.status == 200) {
             setStore({ username: "" });
             setStore({ password: "" });
@@ -69,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             password: store.password,
           }),
         };
-        fetch(process.env.BACKEND_URL + "api/token", opts)
+        fetch(store.url + "api/token", opts)
           .then((resp) => {
             if (resp.status == 200) {
               let aux = resp.json();
@@ -83,9 +78,28 @@ const getState = ({ getStore, getActions, setStore }) => {
             setStore({ token: data.access_token });
             setStore({ username: "" });
             setStore({ password: "" });
-            setStore({ autentificacion: true });
+
             alert("se ha logueado correctamente");
           });
+      },
+      getAutentification: async () => {
+        const store = getStore();
+        try {
+          const resp = await fetch(store.url + "api/privado", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: "Bearer " + store.token,
+            },
+          });
+          const data = await resp.json();
+          let bolean = data.msg;
+          setStore({ autentificacion: bolean });
+          return data;
+        } catch (error) {
+          console.error({ msg: "no tienes permiso" }), 400;
+        }
       },
     },
   };
