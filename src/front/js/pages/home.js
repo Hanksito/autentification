@@ -17,11 +17,11 @@ export const Home = () => {
             <div className="row py-2">
               <input
                 onChange={(e) => {
-                  actions.getUsername(e.target.value);
+                  actions.getEmail(e.target.value);
                 }}
                 id="inputtext"
                 type="text"
-                placeholder="Username"
+                placeholder="email"
               ></input>
             </div>
             <div className="row py-3">

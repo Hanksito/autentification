@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       password: "",
       token: "",
       autentificacion: false,
-      url: "https://3001-hanksito-autentificatio-1w44016d85t.ws-eu62.gitpod.io/",
+      url: "https://3001-hanksito-autentificatio-mk8gvzyiyhh.ws-eu62.gitpod.io/",
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -60,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: store.username,
+            email: store.email,
             password: store.password,
           }),
         };
