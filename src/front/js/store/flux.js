@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       password: "",
       token: "",
       autentificacion: false,
-      url: "https://3001-hanksito-autentificatio-mk8gvzyiyhh.ws-eu62.gitpod.io/",
+      url: process.env.BACKEND_URL,
     },
     actions: {
       // Use getActions to call a function within a fuction
